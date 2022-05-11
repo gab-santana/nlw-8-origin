@@ -6,7 +6,7 @@
 }
 
 :root {
-  --hue: 170;
+  --hue: 190;
   --primary-color: hsl(var(--hue), 100%, 26%);
   --headline: hsl(210, 11%, 15%);
   --paragraph: hsl(210, 9%, 31%);
@@ -289,8 +289,9 @@ body.menu-expanded button path {
   stroke: white;
 }
 
-/*=== HOME =================================*/
+/*=== #HOME =================================*/
 #home {
+  padding-block: 0;
   padding-top: calc(4.1rem + var(--nav-height));
 }
 
@@ -474,14 +475,13 @@ footer .social-links {
   transform: translateY(0);
 }
 
-/*GERAL************/
-
-body {
-  overflow: auto;
-}
-/* RESPONSIVO*******************/
+/*=== RESPONSIVO =================================*/
 @media (min-width: 1024px) {
-  /*GERAL*/
+  /*=== GERAL =================================*/
+  body {
+    overflow: auto;
+  }
+
   .wrapper {
     width: min(112rem, 100%);
     display: grid;
@@ -490,6 +490,7 @@ body {
   .col-a {
     grid-area: A;
   }
+
   .col-b {
     grid-area: B;
   }
@@ -503,7 +504,8 @@ body {
     line-height: 5.2rem;
   }
 
-  /*NAVIGATION*/
+  /*=== NAVIGATION =================================*/
+  /* reset */
   nav#navigation .wrapper * {
     margin: 0;
     padding: 0;
@@ -513,10 +515,10 @@ body {
     flex-direction: initial;
     position: initial;
     font-size: initial;
+    font-weight: initial;
     transform: initial;
     color: initial;
     background-color: initial;
-    font-weight: initial;
     filter: initial;
   }
 
@@ -549,14 +551,17 @@ body {
     align-items: center;
     padding: 1rem 2.4rem;
 
-    border: 1px solid hsl(var(--hue), 100%, 26%);
+    border: 1px solid var(--primary-color);
     border-radius: 4rem;
+
+    color: var(--primary-color);
 
     font-weight: 700;
     font-size: 1.4rem;
     line-height: 1.8rem;
     text-transform: uppercase;
   }
+
   nav#navigation .menu a.button:hover {
     background-color: var(--primary-color);
     border: none;
@@ -565,16 +570,18 @@ body {
 
   nav#navigation.scroll .menu ul li a {
     color: var(--brand-light-2);
-    opacity: 1;
+    opacity: 0.6;
   }
 
   nav#navigation.scroll .menu a.button {
     border-color: white;
     color: white;
   }
+
   nav#navigation .menu li a {
     transition: opacity 0.4s;
   }
+
   nav#navigation .menu li a.active,
   nav#navigation .menu li a:hover {
     opacity: 1;
@@ -590,7 +597,6 @@ body {
     position: relative;
     bottom: -2rem;
     left: -0.5rem;
-    padding-inline: 0rem;
 
     display: block;
 
@@ -601,12 +607,14 @@ body {
     background-color: white;
   }
 
+  nav#navigation .menu li a.active,
   nav#navigation .menu li a:hover::after {
     padding-inline: 0.8rem;
     width: 100%;
   }
-  nav#navigation .menu li a.active,
-  nav#navigation .menu li a:hover {
+
+  nav#navigation.scroll .menu li a.active,
+  nav#navigation.scroll .menu li a:hover {
     opacity: 1;
   }
 
@@ -619,15 +627,18 @@ body {
 
   /*=== HOME =================================*/
   #home::before {
-    height: calc(96%- (var(--nav-height)));
+    height: calc(96% - var(--nav-height));
   }
+
   #home {
-    padding-block: 0;
     padding-top: var(--nav-height);
   }
+
   #home .wrapper {
-    grid-template-columns: 50% 50%;
-    grid-template-areas: 'A B' 'C C';
+    grid-template-columns: 60.5rem 1fr;
+    grid-template-areas:
+      'A B'
+      'C C';
   }
 
   #home .col-a {
@@ -662,9 +673,11 @@ body {
   #home .button {
     margin: 0;
   }
+
   #home img {
     width: 42rem;
   }
+
   /*=== SERVICES =================================*/
   #services h2 {
     width: 47rem;
@@ -674,6 +687,7 @@ body {
   #services .cards {
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 4rem;
   }
 
   #services .card {
@@ -682,7 +696,6 @@ body {
   }
 
   /*=== ABOUT =================================*/
-
   #about .wrapper {
     grid-template-columns: 48rem 1fr;
     grid-template-areas: 'B A';
@@ -692,15 +705,16 @@ body {
   #about .col-a {
     align-self: center;
   }
+
   #about .content p {
     margin-bottom: 0;
   }
 
   /*=== CONTACT =================================*/
+
   #contact .wrapper {
-    grid-template-areas: 48rem 1fr;
+    grid-template-columns: 1fr 57.5rem;
     grid-template-areas: 'A B';
-    gap: 6.7rem;
   }
 
   #contact h2 {
@@ -711,7 +725,7 @@ body {
   footer {
     padding-block: 8rem;
   }
-
+  
   footer .wrapper {
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 'A B';
@@ -721,8 +735,13 @@ body {
     align-self: center;
   }
 
+
   footer .col-b {
     align-self: center;
     justify-self: flex-end;
+  }
+
+  footer p {
+    margin-bottom: 0
   }
 }
