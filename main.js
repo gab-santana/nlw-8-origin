@@ -7,12 +7,28 @@ function onScroll() {
   activateMenuAtCurrentSection()
 }
 
-function activateMenuAtCurrentSection(){
-  const targetLine = scrollY + (innerHeight/2)
-  const sectionTop = home.offsetTop
-  const sectionHeight = home.offsetHeight
+function activateMenuAtCurrentSection() {
+  //linha alvo
+  const targetLine = scrollY + innerHeight / 2
+  //Verificar se a seção passou da linha
+  const sectionTop = home.offsetTop //topo da seção home
+  const sectionHeight = home.offsetHeight // Altura da Home
+  const sectionTopReachOrTargetLine = targetLine >= sectionTop
+  //fim da seção
+  const sectionEndsAt = sectionTop + sectionHeight
+  //Fim da seção passou da linha
+  const sectionEndPassedTargetLine = sectionEndsAt <= targetLine
+  //limites da seção
+  const sectionBoundaries =
+    sectionTopReachOrTargetLine && !sectionEndPassedTargetLine
 
-  const sectionTopReachOrTargetLine =
+  const sectionId = section.getAtribute('id')
+  const menuElement = document.querySelector(`.menu a[href*=${sectionId}]`)
+
+  menuElement.classList.remove('active')
+  if (sectionBoundaries) {
+    menuElement.classList.add('active')
+  }
 }
 
 function showNavOnScroll() {
